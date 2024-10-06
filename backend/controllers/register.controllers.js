@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import { Register } from '../models/register.model.js'; 
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken"
 
 // @user/register
 export const registerUser = asyncHandler(async (req, res) => {
@@ -36,4 +37,39 @@ export const registerUser = asyncHandler(async (req, res) => {
     }
 });
 
+// @user/login - Authenticate a user and issue a token
+export const loginUser = asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
 
+    if (!email || !password) {
+        return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const user = await Register.findOne({ email });
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+        const accessToken = jwt.sign(
+            {
+                user: {
+                    _id: user._id,
+                    username: user.username,
+                    email: user.email,
+                    fullname: user.fullname
+                }
+            },
+            process.env.ACCESS_TOKEN_SECRET,
+            { expiresIn: "1h" }
+        );
+
+        res.status(200).json({
+            _id: user._id,
+            username: user.username,
+            email: user.email,
+            fullname: user.fullname,
+            contactnumber: user.contactnumber,
+            token: accessToken, 
+        });
+    } else {
+        res.status(401).json({ message: "Invalid email or password" });
+    }
+});

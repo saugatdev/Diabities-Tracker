@@ -17,7 +17,7 @@ const diabetesSchema = new Schema({
     }
 }, 
 {
-    timestamps: true // Correct place for the timestamps option
+    timestamps: true 
 });
 
 export const Diabetes = mongoose.model("Diabetes", diabetesSchema);

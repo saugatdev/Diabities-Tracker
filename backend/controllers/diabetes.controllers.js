@@ -41,11 +41,11 @@ export const getData = asyncHandler(async(req, res) => {
         return res.status(400).json({ message: "UserID is required" });
     }
 
-    const records = await Diabetes.find({ userId }); // Fetch records from the database
+    const records = await Diabetes.find({ userId }); 
 
     if (records.length > 0) {
-        return res.status(200).json(records); // Return found records
+        return res.status(200).json(records); 
     } else {
-        return res.status(404).json({ message: "No records found" }); // Return a 404 if no records are found
+        return res.status(404).json({ message: "No records found" }); 
     }
 });
