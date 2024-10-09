@@ -1,0 +1,98 @@
+/* AuthForm.css */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc; /* Light background color */
+}
+
+.container {
+    width: auto;
+    max-width: 600px;
+    height: auto;
+    margin: 100px auto; /* Center vertically and horizontally */
+    padding: 20px;
+    background-color: white; /* Card background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4CAF50; /* Green color for title */
+}
+
+.form {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    width: ;
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between form fields */
+}
+
+.form-label {
+    margin-bottom: 5px;
+    font-weight: bold; /* Bold labels */
+    color: black;
+    display: none;
+}
+
+.form-input {
+    padding: 10px;
+    border: 3px solid #4CAF50; /* Light border */
+    border-radius: 10px;
+    transition: border-color 0.3s; /* Smooth transition for focus */
+    width: 100%; /* Make input fields full width */
+    font-size: 16px; /* Ensure font size is readable */
+    background-color: white;
+    color: black;
+}
+
+.form-input:focus {
+    border-color: #4CAF50; /* Green border on focus */
+    outline: none; /* Remove default outline */
+    color: black;
+}
+
+.form-button {
+    padding: 10px;
+    border: none; /* Remove default border */
+    border-radius: 4px;
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-top: 10px; /* Space above buttons */
+    font-size: 16px; /* Ensure font size is readable */
+    width: 100%; /* Make buttons full width */
+}
+
+.primary-button {
+    background-color: #4CAF50; /* Green background for primary button */
+    color: white; /* White text */
+    max-width: px;
+    height: auto;
+}
+
+.primary-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.secondary-button {
+    background-color: transparent; /* Transparent background for secondary button */
+    color: #4CAF50; /* Green text */
+    border: 1px solid #4CAF50; /* Green border */
+    max-width: 80px;
+  
+    justify-content: center;
+}
+
+.secondary-button:hover {
+    background-color: #4CAF50; /* Green background on hover */
+    color: white; /* White text */
+}

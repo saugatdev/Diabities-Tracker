@@ -1,0 +1,88 @@
+/* Root level: define default variables */
+:root {
+  --primary-bg-light: #f3f0f0;
+  --primary-bg-dark: #333;
+  --primary-color-light: #000;
+  --primary-color-dark: #f3f0f0;
+  --input-bg-light: #fff;
+  --input-bg-dark: #222;
+  --input-border-color: #0fe621;
+  --button-bg: #28a745;
+  --button-hover-bg: #218838;
+}
+
+/* Apply styles based on user's preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-bg: var(--primary-bg-dark);
+    --primary-color: var(--primary-color-dark);
+    --input-bg: var(--input-bg-dark);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary-bg: var(--primary-bg-light);
+    --primary-color: var(--primary-color-light);
+    --input-bg: var(--input-bg-light);
+  }
+}
+
+/* Diabetes form container */
+.diabetes-form-container {
+  width: 150%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid var(--input-border-color);
+  border-radius: 8px;
+  background-color: var(--primary-bg);
+  color: var(--primary-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 15px;
+  padding-right: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--primary-color);
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--input-bg);
+  color: var(--primary-color);
+  border: 1px solid var(--input-border-color);
+  border-radius: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Button styles */
+button {
+  padding: 10px 20px;
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* Make form responsive */
+@media (max-width: 600px) {
+  .diabetes-form-container {
+    width: 90%;
+    padding: 15px;
+  }
+}

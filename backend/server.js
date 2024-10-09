@@ -6,6 +6,10 @@ const app = express()
 
 const PORT = process.env.PORT;
 
+import cors from 'cors';
+
+app.use(cors());
+
 
 connectDb();
 app.use(express.json());
