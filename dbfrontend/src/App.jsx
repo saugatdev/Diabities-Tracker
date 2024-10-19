@@ -1,21 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import LoginForm from './components/auth/LoginForm';
+import RegisterForm from './components/auth/RegisterForm';
+import './index.css';
+import { Toaster } from 'sonner';
 
-import AuthForm from './component/AuthForm.jsx'
-
-
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [showLogin, setShowLogin] = useState(true);
 
   return (
     <>
-  
-    <AuthForm />
-    
+    <div className="flex items-center justify-center min-h-screen  bg-white-100  ">
+      <div className="p-6 max-w-md bg-white rounded-lg shadow-md  ">
+        {showLogin ? (
+          <LoginForm onToggle={() => setShowLogin(false)} />
+        ) : (
+          <RegisterForm onToggle={() => setShowLogin(true)} />
+        )}
+      </div>
+      <Toaster position="top-center" />
+    </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
