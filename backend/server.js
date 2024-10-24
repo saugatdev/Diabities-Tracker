@@ -10,7 +10,7 @@ import cors from 'cors';
 
 
 app.use(cors({
-    origin: 'http://localhost:5173' // Replace with your frontend origin
+    origin: 'http://localhost:5173' 
   }));
 
 
