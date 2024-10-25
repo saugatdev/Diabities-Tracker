@@ -4,10 +4,14 @@ import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Card } from '../ui/Card';
 import useForm from '../../hooks/useForm'; // Ensure the path is correct
+import { useNavigate } from 'react-router-dom';
 
 
 const RegisterForm = ({ onToggle }) => {
   const { formData, handleChange, handleSubmit, errorMessage, successMessage } = useForm();
+
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
   return (
     <>
@@ -84,7 +88,18 @@ const RegisterForm = ({ onToggle }) => {
             />
           </div>
           <div className="text-sm text-center mt-2">
-            Already have an account? <a href="#" onClick={onToggle} className="text-blue-500">Login</a>
+            Already have an account? 
+            <a 
+              href="/register"
+              onClick={(e) => {
+                e.preventDefault(); // Prevent default anchor behavior
+                navigate('/login'); // Navigate to register page
+              }}
+              className="text-blue-500 underline ml-1"
+            >
+              Login
+            </a>
+
           </div>
           <Button type="submit" className="w-full mt-4">Register</Button>
         </form>

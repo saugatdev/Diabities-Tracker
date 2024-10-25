@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="content-wrapper">
+        <h1>Why JWT is Necessary and Why We Store It in Local Storage</h1>
+        <p>When a user logs in and the backend sends a JWT (JSON Web Token), it's important to store that token (often in local storage or session storage) to manage authentication for the following reasons:</p>
+      
+        <h2>Stateless Authentication:</h2>
+        <p>JWT enables stateless authentication, meaning the server doesn't need to store session data for each user. The user's identity is encoded within the token itself, which the client stores. Every subsequent request to the server can include this token, allowing the server to identify and authorize the user without maintaining a session in memory.</p>
+      
+        <h2>Authorization for Protected Routes:</h2>
+        <p>Some parts of the application (like a dashboard) are only accessible to authenticated users. When the JWT is saved in local storage or session storage, it can be included in the Authorization header of every request to a protected route. The server checks the token to confirm whether the user has permission to access that route.</p>
+      
+        <h3>Example:</h3>
+        <pre><code class="language-javascript">
+      fetch('http://your-api.com/protected-route', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`, // Pass JWT token here
+        },
+      });
+        </code></pre>
+      
+        <h2>Persistent Authentication Across Sessions:</h2>
+        <p>By storing the JWT in local storage or session storage, the user stays logged in even if they refresh the page or close and reopen the browser (if using local storage). Without storing the token, the user would have to re-authenticate (log in again) every time the app reloads.</p>
+      
+        <h2>Client-Side Control:</h2>
+        <p>By keeping the token client-side, you have control over when and how to include the token with requests, and you can log the user out by simply removing the token from storage.</p>
+      
+        <h2>JWT Storage Options:</h2>
+        <h3>Local Storage:</h3>
+        <p><strong>Pros:</strong> The token persists even if the browser is closed or the page is refreshed.<br>
+        <strong>Cons:</strong> More vulnerable to XSS (Cross-Site Scripting) attacks because JavaScript can access local storage.</p>
+      
+        <h3>Example:</h3>
+        <pre><code class="language-javascript">
+      localStorage.setItem('token', token); // Store token
+      const token = localStorage.getItem('token'); // Retrieve token
+        </code></pre>
+      
+        <h3>Session Storage:</h3>
+        <p><strong>Pros:</strong> The token is cleared when the browser or tab is closed, making it more secure than local storage.<br>
+        <strong>Cons:</strong> The user has to log in again if the tab or browser is closed.</p>
+      
+        <h3>Example:</h3>
+        <pre><code class="language-javascript">
+      sessionStorage.setItem('token', token); // Store token
+      const token = sessionStorage.getItem('token'); // Retrieve token
+        </code></pre>
+      
+        <h3>HttpOnly Cookies (More Secure Approach):</h3>
+        <p><strong>Pros:</strong> HttpOnly cookies are not accessible via JavaScript, preventing XSS attacks.<br>
+        <strong>Cons:</strong> Cookies are automatically sent with every request, which can make CSRF attacks possible unless additional security measures (like CSRF tokens) are in place.</p>
+      
+        <h2>Key Reasons for JWT in Authentication Flow:</h2>
+        <ul>
+          <li><strong>Efficiency:</strong> JWTs are self-contained. All the user’s information and claims are embedded in the token, so the server doesn’t need to maintain any session data in memory, reducing load.</li>
+          <li><strong>Security:</strong> JWTs can be signed (and optionally encrypted) to ensure their integrity. The server can verify the token’s signature to confirm it hasn’t been tampered with.</li>
+          <li><strong>Scalability:</strong> Since the server doesn’t need to store session data, the architecture scales better for distributed systems and microservices, where different services can verify JWTs independently.</li>
+        </ul>
+      
+        <h3>Implementation Example:</h3>
+        <p>After the user logs in, the JWT is sent from the backend:</p>
+        <pre><code class="language-json">
+      {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+      }
+        </code></pre>
+      
+        <p>The frontend stores this token:</p>
+        <pre><code class="language-javascript">
+      localStorage.setItem('token', data.token); // Store the token
+        </code></pre>
+      
+        <p>Every time the user makes a request to a protected route:</p>
+        <pre><code class="language-javascript">
+      const token = localStorage.getItem('token'); // Retrieve token
+      fetch('http://your-api.com/protected-route', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+        </code></pre>
+      
+        <h2>Key Considerations:</h2>
+        <ul>
+          <li><strong>XSS Attacks:</strong> Storing tokens in local storage makes them vulnerable to XSS attacks. If your app is vulnerable to XSS, a malicious script could access and steal the token from local storage.</li>
+          <li><strong>Token Expiry:</strong> JWTs usually have an expiration time (<code>exp</code>). If a user tries to access a protected route with an expired token, they will be logged out or asked to log in again. You can also implement token refresh mechanisms if necessary.</li>
+          <li><strong>Logout Mechanism:</strong> To log a user out, simply remove the JWT from local or session storage:</li>
+        </ul>
+      
+        <h3>Example:</h3>
+        <pre><code class="language-javascript">
+      localStorage.removeItem('token'); // Clear token on logout
+        </code></pre>
+      
+        <h2>Conclusion:</h2>
+        <p>Storing the JWT token in local storage or session storage is essential for maintaining user authentication across requests and pages. It enables stateless authentication, ensures secure access to protected routes, and allows for persistent login across browser sessions. However, care must be taken to mitigate potential security risks, such as XSS attacks.</p>
+      </div>
+      
+</body>
+</html>

@@ -1,9 +1,10 @@
-import React from 'react';
+ import React from 'react';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Card } from '../ui/Card';
 import '../../index.css';
 import useLogin from '@/hooks/useLogin';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = ({ onToggle }) => {
   const {
@@ -13,6 +14,8 @@ const LoginForm = ({ onToggle }) => {
     errorMessage,
     successMessage,
   } = useLogin(); // Use the custom hook
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
   return (
     <>
@@ -47,7 +50,16 @@ const LoginForm = ({ onToggle }) => {
          
           <div className="mb-4">
             Don’t have an account? 
-            <a href="#" onClick={onToggle} className="text-blue-500 underline ml-1">Register Now</a>
+            <a 
+              href="/register"
+              onClick={(e) => {
+                e.preventDefault(); // Prevent default anchor behavior
+                navigate('/register'); // Navigate to register page
+              }}
+              className="text-blue-500 underline ml-1"
+            >
+              Register Now
+            </a>
           </div>
           <Button type="submit" className="w-full">Login</Button>
         </form>
