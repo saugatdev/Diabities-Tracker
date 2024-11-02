@@ -1,5 +1,5 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { toast } from 'sonner';
 
 const useLogin = () => {
@@ -9,6 +9,14 @@ const useLogin = () => {
   });
 
   const navigate = useNavigate();
+
+  // Check if already logged in and redirect if token exists
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/dashboard'); // Redirect to dashboard if already logged in
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,7 +31,6 @@ const useLogin = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          
         },
         body: JSON.stringify(formData),
       });
@@ -32,10 +39,15 @@ const useLogin = () => {
       console.log("Response data:", data); // Log the response data
 
       if (response.ok) {
-        console.log('Login successful!'); // Add this log
+        console.log('Login successful!');
         localStorage.setItem('token', data.token);
-        localStorage.setItem('userId', data.userId);
-        
+        localStorage.setItem('_id', data._id);
+        localStorage.setItem('username', data.username);
+
+        console.log("Token:", data.token);
+        console.log("User ID:", data._id);
+        console.log("username:", data.username);
+
         toast.success('Login successful!', {
           style: { backgroundColor: '#28a745', color: 'white' }
         });
@@ -49,7 +61,7 @@ const useLogin = () => {
         });
       }
     } catch (error) {
-      console.error('Login error:', error); // Log any error
+      console.error('Login error:', error);
       toast.error('Failed to log in. Please try again.', {
         style: { backgroundColor: '#dc3545', color: 'white' }
       });

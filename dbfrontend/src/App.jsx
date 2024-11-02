@@ -7,6 +7,7 @@ import './index.css';
 import { Toaster } from 'sonner';
 import ProtectedRoute from './routes/protectedRoutes';
 import Dashboard from './components/dasboard/Dashboard';
+import DarkModeToggle from './components/ui/DarkModeToggle';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // State to track authentication
@@ -15,6 +16,7 @@ const App = () => {
   const handleLogin = () => {
     setIsAuthenticated(true); // Set authentication state to true on successful login
   };
+
 
   return (
     <Router>

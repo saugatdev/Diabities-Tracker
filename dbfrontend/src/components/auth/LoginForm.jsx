@@ -5,6 +5,7 @@ import { Card } from '../ui/Card';
 import '../../index.css';
 import useLogin from '@/hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
+import DarkModeToggle from '../ui/DarkModeToggle';
 
 const LoginForm = ({ onToggle }) => {
   const {
@@ -56,7 +57,7 @@ const LoginForm = ({ onToggle }) => {
                 e.preventDefault(); // Prevent default anchor behavior
                 navigate('/register'); // Navigate to register page
               }}
-              className="text-blue-500 underline ml-1"
+              className="text-blue-500 "
             >
               Register Now
             </a>
