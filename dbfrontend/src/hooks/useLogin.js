@@ -41,11 +41,11 @@ const useLogin = () => {
       if (response.ok) {
         console.log('Login successful!');
         localStorage.setItem('token', data.token);
-        localStorage.setItem('_id', data._id);
+        localStorage.setItem('userId', data._id);
         localStorage.setItem('username', data.username);
 
         console.log("Token:", data.token);
-        console.log("User ID:", data._id);
+        console.log("userID:", data._id);
         console.log("username:", data.username);
 
         toast.success('Login successful!', {

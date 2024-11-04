@@ -1,10 +1,10 @@
 // src/components/ui/LineChart.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Exported components
-export const ChartContainer = ({ children, config, className }) => {
+export const ChartContainer = ({ children, className }) => {
   return <div className={className}>{children}</div>; // Basic container for chart
 };
 
@@ -16,19 +16,50 @@ export const ChartTooltipContent = () => {
   return <div>Tooltip Content</div>; // Content for the tooltip
 };
 
-// Sample data for the chart
-const data = [
-  { date: '2023-06-01', value: 120 },
-  { date: '2023-06-02', value: 115 },
-  { date: '2023-06-03', value: 118 },
-  { date: '2023-06-04', value: 122 },
-  { date: '2023-06-05', value: 110 },
-  { date: '2023-06-06', value: 105 },
-  { date: '2023-06-07', value: 112 },
-];
-
 // LineChartComponent definition
 const LineChartComponent = () => {
+  const [chartData, setChartData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Retrieve userId from local storage
+  const userId = localStorage.getItem('userId'); // Replace 'userId' with the actual key used to store the ID
+
+  useEffect(() => {
+    const fetchChartData = async () => {
+      if (!userId) {
+        setError("User ID not found in local storage");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://localhost:3000/user/getdata/${userId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        
+        // Process data to fit the chart format (you may need to adjust this based on your actual data structure)
+        const formattedData = data.map(entry => ({
+          date: new Date(entry.createdAt).toISOString().split('T')[0], // Format date as YYYY-MM-DD
+          value: entry.bloodSugarLevel, // Assuming bloodSugarLevel is the value you want to plot
+        }));
+
+        setChartData(formattedData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchChartData();
+  }, [userId]); // userId is added as a dependency
+
+  if (loading) return <div>Loading chart...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <Card className="w-full max-w-full">
       <CardHeader>
@@ -37,16 +68,10 @@ const LineChartComponent = () => {
       </CardHeader>
       <CardContent>
         <ChartContainer
-          config={{
-            value: {
-              label: "Value",
-              color: "hsl(var(--chart-1))",
-            },
-          }}
           className="h-[300px]"
         >
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data}>
+            <LineChart data={chartData}>
               <XAxis 
                 dataKey="date" 
                 stroke="hsl(var(--foreground))"
@@ -59,7 +84,7 @@ const LineChartComponent = () => {
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
-                tickFormatter={(value) => `${value}`}
+                tickFormatter={(value) => `${value}`} // You can modify this for better formatting
               />
               <ChartTooltip content={<ChartTooltipContent />} />
               <Line 

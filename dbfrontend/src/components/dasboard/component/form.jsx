@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +11,7 @@ const DiabetesTrackingForm = () => {
   const [measurementType, setMeasurementType] = useState('');
   const [hbA1c, setHbA1c] = useState('');
   const [dailyInsulin, setDailyInsulin] = useState('');
-  const [activeTab, setActiveTab] = useState('daily'); // Track the active tab
+  const [activeTab, setActiveTab] = useState('daily');
   const [username, setUsername] = useState('');
 
   useEffect(() => {
@@ -21,19 +21,66 @@ const DiabetesTrackingForm = () => {
     }
   }, []);
 
+const handleSubmit = async (event) => {
+  event.preventDefault();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you would typically send this data to your backend or state management system
-    console.log({ bloodGlucose, measurementType, hbA1c, dailyInsulin });
-    // Reset form fields after submission
-    setBloodGlucose('');
-    setMeasurementType('');
-    setHbA1c('');
-    setDailyInsulin('');
+  const userId = localStorage.getItem('userId'); // Retrieve user ID from localStorage
+  if (!userId) {
+    console.error("User ID (userId) is missing from localStorage.");
+    return;
+  }
+
+  // Construct the data object based on the active form tab
+  let data = { 
+    userId: userId, // Use `userId` as expected by the backend
   };
 
-  // Function to handle tab change
+  if (activeTab === 'daily') {
+    data = {
+      ...data,
+      bloodSugarLevel: bloodGlucose,
+      measurementType,
+    };
+  } else if (activeTab === 'periodic') {
+    data = {
+      ...data,
+      hbA1c,
+    };
+  } else if (activeTab === 'insulin') {
+    data = {
+      ...data,
+      dailyInsulin,
+    };
+  }
+
+  console.log("Form data to be submitted:", data); // Log form data for debugging
+
+  try {
+    const response = await fetch('http://localhost:3000/user/diabetes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("token")}` // Include token if needed
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      console.log("Data submitted successfully");
+      // Reset form fields after submission
+      setBloodGlucose('');
+      setMeasurementType('');
+      setHbA1c('');
+      setDailyInsulin('');
+    } else {
+      const errorResponse = await response.json();
+      console.error("Error submitting data:", errorResponse);
+    }
+  } catch (error) {
+    console.error("Network error:", error);
+  }
+};
+
   const handleTabChange = (value) => {
     setActiveTab(value);
   };
@@ -72,9 +119,8 @@ const DiabetesTrackingForm = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="fasting">Fasting</SelectItem>
-                    <SelectItem value="pre-meal">Pre-meal</SelectItem>
-                    <SelectItem value="post-meal">Post-meal</SelectItem>
-                    <SelectItem value="bedtime">Bedtime</SelectItem>
+                    <SelectItem value="post_meal">Post-meal</SelectItem>
+                    <SelectItem value="random">Random</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

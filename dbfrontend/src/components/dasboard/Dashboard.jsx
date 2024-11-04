@@ -7,7 +7,7 @@ import DiabetesTrackingForm from './component/form';
 import AIDiabetesInsights from './component/aiinsight';
 import DiabetesTrackerNavbar from './component/navbar';
 import DiabetesTrackerFooter from './component/footer';
-
+import DiabetesDashboar from './component/table';
 
 export default function DiabetesDashboard() {
   const [glucoseLevel, setGlucoseLevel] = useState('');
@@ -44,41 +44,14 @@ export default function DiabetesDashboard() {
           <div className="Form">
             <DiabetesTrackingForm/>
           </div>
-          {/* Set grid to occupy full width with no max width constraints */}
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full">
-            <Card className="p-6">
-              <CardHeader className="flex flex-row items-center justify-between pb-4">
-                <CardTitle className="text-lg font-medium">Blood Glucose</CardTitle>
-                <TrendingUp className="h-6 w-6 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">112 mg/dL</div>
-                <p className="text-sm text-muted-foreground">Last reading 2 hours ago</p>
-              </CardContent>
-            </Card>
 
-            <Card className="p-6">
-              <CardHeader className="flex flex-row items-center justify-between pb-4">
-                <CardTitle className="text-lg font-medium">HbA1c</CardTitle>
-                <Activity className="h-6 w-6 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">6.5%</div>
-                <p className="text-sm text-muted-foreground">Last test 3 months ago</p>
-              </CardContent>
-            </Card>
-
-            <Card className="p-6">
-              <CardHeader className="flex flex-row items-center justify-between pb-4">
-                <CardTitle className="text-lg font-medium">Daily Insulin</CardTitle>
-                <Droplet className="h-6 w-6 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">22 units</div>
-                <p className="text-sm text-muted-foreground">Average over last 7 days</p>
-              </CardContent>
-            </Card>
+          
+          <div>
+            <DiabetesDashboar/>
           </div>
+
+
+         
 
         
 
