@@ -6,38 +6,33 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Loader2 } from 'lucide-react'
 
 const AIDiabetesInsights = () => {
-  const [loading, setLoading] = useState(false)
-  const [aiInsights, setAiInsights] = useState(null)
+  const [loading, setLoading] = useState(false);
+  const [aiInsights, setAiInsights] = useState(null);
 
+  const userId = localStorage.getItem('userId');
   const fetchAIInsights = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      // This is where you would make an API call to your AI service
-      // For demonstration, we'll simulate an API call with a timeout
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      // Simulated AI response
-      const mockAIResponse = {
-        summary: "Based on your recent data, your blood glucose levels have been relatively stable. However, there's room for improvement in your post-meal readings.",
-        recommendations: [
-          "Consider adjusting your carbohydrate intake during dinner to help stabilize evening glucose levels.",
-          "Your morning fasting glucose has shown improvement. Keep up your current routine.",
-          "Your HbA1c trend is positive, showing a slight decrease over the past 3 months."
-        ],
-        alert: {
-          type: "info",
-          message: "Your next HbA1c test is due in 2 weeks. Schedule an appointment with your healthcare provider."
+        const response = await fetch('http://localhost:3000/user/generatereport/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userId: userId })
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch AI insights.");
         }
-      }
-      
-      setAiInsights(mockAIResponse)
+
+        const data = await response.json();
+        setAiInsights(data.insights);
     } catch (error) {
-      console.error("Error fetching AI insights:", error)
-      // Handle error state here
+        console.error("Error fetching AI insights:", error);
     } finally {
-      setLoading(false)
+        setLoading(false);
     }
-  }
+  };
 
   return (
     <Card className="w-full max-w-full">
@@ -57,19 +52,21 @@ const AIDiabetesInsights = () => {
         )}
         {aiInsights && (
           <div className="space-y-4">
-            <p className="text-lg font-medium">{aiInsights.summary}</p>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="recommendations">
-                <AccordionTrigger className='bg-transparent border-none focus:outline-none no-flash' >Recommendations</AccordionTrigger>
-                <AccordionContent className='bg-transparent outline-none'>
-                  <ul className="list-disc pl-5 space-y-2">
-                    {aiInsights.recommendations.map((rec, index) => (
-                      <li key={index}>{rec}</li>
-                    ))}
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            {aiInsights.summary && <p className="text-lg font-medium">{aiInsights.summary}</p>}
+            {aiInsights.recommendations && aiInsights.recommendations.length > 0 && (
+              <Accordion type="single" collapsible>
+                <AccordionItem value="recommendations">
+                  <AccordionTrigger>Recommendations</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="list-disc pl-5 space-y-2">
+                      {aiInsights.recommendations.map((rec, index) => (
+                        <li key={index}>{rec}</li>
+                      ))}
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            )}
             {aiInsights.alert && (
               <Alert>
                 <AlertTitle>Important Notice</AlertTitle>
@@ -85,7 +82,7 @@ const AIDiabetesInsights = () => {
         </CardDescription>
       </CardFooter>
     </Card>
-  )
-}
+  );
+};
 
 export default AIDiabetesInsights;

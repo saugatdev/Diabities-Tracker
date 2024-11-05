@@ -11,7 +11,7 @@ import { generateDiabetesInsights } from "../controllers/gemini.controller.js";
 router.post("/register",registerUser)
 router.post("/diabetes", diabetes)
 router.post("/login",loginUser)
-router.get("/generatereport/",generateDiabetesInsights)
+router.post("/generatereport",generateDiabetesInsights)
 router.get("/getdata/:userId", getData)
 
 
