@@ -4,13 +4,15 @@ import {registerUser} from "../controllers/register.controllers.js"
 import { diabetes } from "../controllers/diabetes.controllers.js";
 import { loginUser } from "../controllers/register.controllers.js";
 import { getData } from "../controllers/diabetes.controllers.js";
-import validateToken from "../middleware/validateToken.js";
+import { generateDiabetesInsights } from "../controllers/gemini.controller.js";
+// import validateToken from "../middleware/validateToken.js";
 
 
 router.post("/register",registerUser)
-router.post("/diabetes", validateToken, diabetes)
+router.post("/diabetes", diabetes)
 router.post("/login",loginUser)
-router.get("/getdata/:userId",validateToken, getData)
+router.get("/generatereport/",generateDiabetesInsights)
+router.get("/getdata/:userId", getData)
 
 
 
