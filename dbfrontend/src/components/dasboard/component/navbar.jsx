@@ -40,8 +40,8 @@ const DiabetesTrackerNavbar = ({ showProfileMenu, showBackButton = true }) => {
 
   const navItems = [
     { name: 'About Us', path: '/about-us' },
-    { name: 'Features', path: '/features' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Features', path: '#' },
+    { name: 'Contact', path: '#' },
     { name: 'Blog', path: '/blogs' },
   ];
 

@@ -12,7 +12,7 @@ router.post("/diabetes", diabetes)
 router.post("/login",loginUser)
 router.post("/generatereport",generateDiabetesInsights)
 router.get("/getdata/:userId", getData)
-router.get("/getuser/", getUser)
+router.post("/getuser", getUser)
 
 
 
