@@ -76,7 +76,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 
 
 
-
+//@user/getuser
 
 export const getUser = asyncHandler(async (req, res) => {
     const { _id } = req.body;
