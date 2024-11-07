@@ -9,7 +9,7 @@ const useDiabetes = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:3000/diabetes', {
+      const response = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/diabetes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

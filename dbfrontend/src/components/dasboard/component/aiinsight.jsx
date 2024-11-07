@@ -13,7 +13,7 @@ const AIDiabetesInsights = () => {
   const fetchAIInsights = async () => {
     setLoading(true);
     try {
-        const response = await fetch('http://localhost:3000/user/generatereport/', {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/user/generatereport/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

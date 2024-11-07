@@ -86,7 +86,7 @@ const DiabetesDashboar = () => {
       }
 
       try {
-        const response = await fetch(`http://localhost:3000/user/getdata/${userId}`);
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/user/getdata/${userId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
