@@ -107,7 +107,7 @@ const DiabetesDashboar = () => {
 
   return (
     <div>
-      <h1>Diabetes Dashboard</h1>
+      <h1 className='text-xl font-semibold'>Blood Glucose History</h1>
       <DiabetesTable entries={entries} />
     </div>
   );

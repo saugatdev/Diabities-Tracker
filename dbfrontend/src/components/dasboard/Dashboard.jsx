@@ -12,12 +12,14 @@ import DiabetesDashboar from './component/table';
 export default function DiabetesDashboard() {
   const [glucoseLevel, setGlucoseLevel] = useState('');
   const [mealType, setMealType] = useState('');
+  const shouldShowProfileMenu = true;
+  const showBackButton = false;
 
   return (
     <>
      
      <div className="navvbar">
-      < DiabetesTrackerNavbar/>
+      < DiabetesTrackerNavbar showBackButton={showBackButton} showProfileMenu={shouldShowProfileMenu}/>
      </div>
  
        {/* <header className="flex items-center justify-between px-4 py-4 border-b w-full">

@@ -12,7 +12,16 @@ export const generateDiabetesInsights = async (req, res) => {
             return res.status(404).json({ message: "No diabetes records found for this user." });
         }
 
-        const prompt = `Act as a diabetes doctor. Analyze the following data and provide insights: ${JSON.stringify(diabetesRecords)}`;
+        const prompt = `Please analyze the following blood sugar levels as an experienced diabetes doctor:
+
+                       ${JSON.stringify(diabetesRecords)}
+                        Structure your response with the following headings and format in 2nd person narrative:
+
+                        Overall Health Status: Analyze these values concisely, noting any concerning aspects of the patient’s blood glucose control and potential health risks (in maximum 4 brief sentence).
+
+                        Recommendations:"Provide 4 actionable, numbered recommendations for managing blood sugar levels more effectively, focusing on short and simple dietary and exercise advice.".
+
+                        Focus on being clear, direct, and professional. Avoid unnecessary details or extraneous information. `;
         const result = await model.generateContent(prompt);
 
         const insightsText = result.response.text();  // Make sure to call `text()` to retrieve the response content

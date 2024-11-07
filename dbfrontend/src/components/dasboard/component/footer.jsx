@@ -3,6 +3,9 @@ import { Facebook, Twitter, Instagram, Mail } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
+import BlogHomepage from '@/components/blogs/bloghomepage'
+import { Link } from 'react-router-dom' // Import Link from react-router-dom
+
 
 const DiabetesTrackerFooter = () => {
   const handleSubscribe = (e) => {
@@ -33,10 +36,10 @@ const DiabetesTrackerFooter = () => {
           <div className="space-y-4">
             <h4 className="text-sm font-semibold">Resources</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:underline">Blog</a></li>
-              <li><a href="#" className="hover:underline">FAQ</a></li>
-              <li><a href="#" className="hover:underline">Privacy Policy</a></li>
-              <li><a href="#" className="hover:underline">Terms of Service</a></li>
+              <li><Link to="/blogs" className="hover:underline">Blog</Link></li>
+              <li><Link to="/faq" className="hover:underline">FAQ</Link></li>
+              <li><Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:underline">Terms of Service</Link></li>
             </ul>
           </div>
           <div className="space-y-4">

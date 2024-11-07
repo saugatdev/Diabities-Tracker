@@ -34,6 +34,44 @@ const AIDiabetesInsights = () => {
     }
   };
 
+  // Function to format summary text
+const formatSummary = (summary) => {
+  // Split sections by "##" to separate "Overall Health Status" and "Recommendations"
+  const sections = summary.split(/##\s*/).filter(Boolean);
+  
+  // Clean and extract the health status section
+  let healthStatus = sections[0].replace("Overall Health Status:", "").trim();
+  
+  // Remove unnecessary symbols (*, #, etc.) from health status
+  healthStatus = healthStatus.replace(/[^\w\s.,]/g, ""); // Keeps words, spaces, commas, and periods
+
+  // Extract recommendations section and split by numbered points (1., 2., 3., 4.)
+  const recommendationsText = sections.find((section) => section.startsWith("Recommendations"));
+  const recommendations = recommendationsText
+    ? recommendationsText
+        .replace("Recommendations:", "")
+        .replace(/[^\w\s.,]/g, "")  // Remove symbols from recommendations section as well
+        .split(/\n\d+\.\s+/)         // Split recommendations by numbers (1., 2., etc.)
+        .filter((item) => item.trim() !== "") 
+    : [];
+
+    return (
+      <div>
+        {/* Render Overall Health Status */}
+        <h2 className="text-lg font-bold mt-4">Overall Health Status</h2>
+        <p className="mt-2">{healthStatus}</p>
+
+        {/* Render Recommendations */}
+        <h2 className="text-lg font-bold mt-4">Recommendations</h2>
+        <ol className="list-decimal pl-5 space-y-2">
+          {recommendations.map((item, index) => (
+            <li key={index}>{item.trim()}</li>
+          ))}
+        </ol>
+      </div>
+    );
+  };
+
   return (
     <Card className="w-full max-w-full">
       <CardHeader>
@@ -52,20 +90,10 @@ const AIDiabetesInsights = () => {
         )}
         {aiInsights && (
           <div className="space-y-4">
-            {aiInsights.summary && <p className="text-lg font-medium">{aiInsights.summary}</p>}
-            {aiInsights.recommendations && aiInsights.recommendations.length > 0 && (
-              <Accordion type="single" collapsible>
-                <AccordionItem value="recommendations">
-                  <AccordionTrigger>Recommendations</AccordionTrigger>
-                  <AccordionContent>
-                    <ul className="list-disc pl-5 space-y-2">
-                      {aiInsights.recommendations.map((rec, index) => (
-                        <li key={index}>{rec}</li>
-                      ))}
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+            {aiInsights.summary && (
+              <div className="text-lg font-medium">
+                {formatSummary(aiInsights.summary)}
+              </div>
             )}
             {aiInsights.alert && (
               <Alert>

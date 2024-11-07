@@ -95,8 +95,10 @@ const handleSubmit = async (event) => {
         <Tabs defaultValue="daily" onValueChange={handleTabChange}>
           <TabsList className="grid w-full grid-cols-3 ">
             <TabsTrigger value="daily" className={activeTab === 'daily' ? 'bg-white' : 'bg-gray-100'}>Daily Log</TabsTrigger>
+ {/* 
             <TabsTrigger value="periodic" className={activeTab === 'periodic' ? 'bg-white' : 'bg-gray-100'}>Periodic Update</TabsTrigger>
             <TabsTrigger value="insulin" className={activeTab === 'insulin' ? 'bg-white' : 'bg-gray-100'}>Insulin Log</TabsTrigger>
+*/}
           </TabsList>
           <TabsContent value="daily">
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -127,6 +129,7 @@ const handleSubmit = async (event) => {
               <Button type="submit">Log Blood Glucose</Button>
             </form>
           </TabsContent>
+          {/* 
           <TabsContent value="periodic">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
@@ -166,6 +169,7 @@ const handleSubmit = async (event) => {
               <Button type="submit">Log Daily Insulin</Button>
             </form>
           </TabsContent>
+          */}
         </Tabs>
       </CardContent>
       <CardFooter>

@@ -1,0 +1,65 @@
+import asyncHandler from "express-async-handler";
+import { Diabetes } from "../models/diabetes.model.js";
+import { Register } from "../models/register.model.js"; // Import Register model
+
+// Handle creating diabetes record
+export const diabetes = asyncHandler(async (req, res) => {
+    const { userId, bloodSugarLevel, measurementType } = req.body;
+
+    if (!userId || !bloodSugarLevel || !measurementType) {
+        return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const newDiabetes = await Diabetes.create({
+        userId,
+        bloodSugarLevel,
+        measurementType
+    });
+
+    if (newDiabetes) {
+        res.status(201).json({
+            _id: newDiabetes._id,
+            bloodSugarLevel: newDiabetes.bloodSugarLevel,
+            measurementType: newDiabetes.measurementType
+        });
+    } else {
+        res.status(400).json({
+            message: "Invalid Data"
+        });
+    }
+});
+
+// Handle fetching data (user + diabetes records)
+export const getData = asyncHandler(async (req, res) => {
+    const { userId } = req.params;
+
+    if (!userId) {
+        return res.status(400).json({ message: "UserID is required" });
+    }
+
+    // Fetch user (register) information using userId
+    const user = await Register.findById(userId); // Find user by ID from the register collection
+
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+
+    // Fetch the diabetes records for this user
+    const records = await Diabetes.find({ userId });
+
+    if (records.length > 0) {
+        // Return both user data and diabetes records
+        return res.status(200).json({
+            user: {
+                _id: user._id,
+                username: user.username,
+                fullname: user.fullname,
+                email: user.email,  // Add other fields as necessary
+                contactnumber: user.contactnumber // Include the contact number
+            },
+            diabetesRecords: records
+        });
+    } else {
+        return res.status(404).json({ message: "No diabetes records found" });
+    }
+});

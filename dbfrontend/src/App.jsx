@@ -8,6 +8,11 @@ import { Toaster } from 'sonner';
 import ProtectedRoute from './routes/protectedRoutes';
 import Dashboard from './components/dasboard/Dashboard';
 import DarkModeToggle from './components/ui/DarkModeToggle';
+import ProfileDashboard from './components/dasboard/profile';
+import AboutUsPage from './pages/aboutus';
+
+import BlogHomepage from './components/blogs/bloghomepage';
+import SingleBlogPost from './components/blogs/contents/blog1';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // State to track authentication
@@ -25,6 +30,14 @@ const App = () => {
         <Route path="/dashboard" element={
           <ProtectedRoute isAuthenticated={isAuthenticated}>
             <Dashboard /> 
+          </ProtectedRoute>
+        } 
+        />
+
+          
+      <Route path="/profile" element={
+          <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <ProfileDashboard />
           </ProtectedRoute>
         } />
         
@@ -52,6 +65,13 @@ const App = () => {
 
         {/* Redirect any other route to login */}
         <Route path="*" element={<Navigate to="/login" />} />
+        {/*  other routes */}
+        <Route path="/profile" element={<ProfileDashboard />} />
+        <Route path="/about-us" element={<AboutUsPage />} />
+       
+        <Route path="/blogs" element={<BlogHomepage />} />
+        <Route path="/blog/:id" element={<SingleBlogPost />} /> 
+     
       </Routes>
     </Router>
   );
