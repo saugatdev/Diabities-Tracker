@@ -73,3 +73,29 @@ export const loginUser = asyncHandler(async (req, res) => {
         res.status(401).json({ message: "Invalid email or password" });
     }
 });
+
+
+
+
+
+export const getUser = asyncHandler(async (req, res) => {
+    const { _id } = req.body;
+
+    if (!_id) {
+        return res.status(400).json({ message: "UserID is required" });
+    }
+    const record = await Register.findOne({ _id });
+
+    if (!record) {
+        return res.status(404).json({ message: "No records found" });
+    }
+    const { username, email, fullname, contactnumber } = record;
+
+    res.status(200).json({
+        _id: record._id,
+        username,
+        email,
+        fullname,
+        contactnumber,
+    });
+});

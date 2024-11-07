@@ -5,7 +5,7 @@ export const diabetes = asyncHandler(async(req,res)=>{
     const {userId, bloodSugarLevel, measurementType} = req.body;
 
     if(!userId || !bloodSugarLevel || !measurementType){
-        return res.stauts(400).json({message:"All fields are required"})
+        return res.status(400).json({message:"All fields are required"})
     }
 
 const newDiabetes = await Diabetes.create({
