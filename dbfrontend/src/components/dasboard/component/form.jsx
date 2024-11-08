@@ -128,6 +128,8 @@ const handleSubmit = async (event) => {
               </div>
               <Button type="submit">Log Blood Glucose</Button>
             </form>
+            <br />
+
           </TabsContent>
           {/* 
           <TabsContent value="periodic">
