@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
 
 // Exported components
 export const ChartContainer = ({ children, className }) => {
@@ -65,7 +67,7 @@ const LineChartComponent = () => {
           <strong>Oops! Please update your glucose log and refresh the page. {}</strong>
         </div>
         <div>
-          <button className='text-black text-white' onClick={() => window.location.reload()}>Try Again</button>
+        <Button onClick={() => window.location.reload()}>Try Again</Button>
         </div>
       </div>
     );
