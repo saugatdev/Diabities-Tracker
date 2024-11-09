@@ -110,7 +110,7 @@ const DiabetesDashboar = () => {
           <strong>Oops! Please update your glucose log and refresh the page. {}</strong>
         </div>
         <div>
-          <button className='text-black text-white' onClick={() => window.location.reload()}>Try Again</button>
+          <button className='text-white' onClick={() => window.location.reload()}>Try Again</button>
         </div>
       </div>
     );
