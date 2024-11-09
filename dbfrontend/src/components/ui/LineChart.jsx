@@ -58,7 +58,18 @@ const LineChartComponent = () => {
   }, [userId]); // userId is added as a dependency
 
   if (loading) return <div>Loading chart...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error) {
+    return (
+      <div>
+        <div style={{ color: 'red', marginBottom: '20px' }}>
+          <strong>Oops! Please update your glucose log and refresh the page. {}</strong>
+        </div>
+        <div>
+          <button className='text-black text-white' onClick={() => window.location.reload()}>Try Again</button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Card className="w-full max-w-full">

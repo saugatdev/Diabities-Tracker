@@ -103,11 +103,23 @@ const DiabetesDashboar = () => {
   }, [userId]); // userId is added as a dependency
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error) {
+    return (
+      <div>
+        <div style={{ color: 'red', marginBottom: '20px' }}>
+          <strong>Oops! Please update your glucose log and refresh the page. {}</strong>
+        </div>
+        <div>
+          <button className='text-black text-white' onClick={() => window.location.reload()}>Try Again</button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
       <h1 className='text-xl font-semibold'>Blood Glucose History</h1>
+       
       <DiabetesTable entries={entries} />
     </div>
   );
