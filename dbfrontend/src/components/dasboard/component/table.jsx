@@ -91,8 +91,11 @@ const DiabetesDashboar = () => {
           throw new Error('Failed to fetch data');
         }
         const data = await response.json();
-        setEntries(data);
-      } catch (err) {
+        if (data.length === 0) {
+          setError('No data found for the user');
+        } else {
+          setEntries(data);
+        }      } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
@@ -100,7 +103,7 @@ const DiabetesDashboar = () => {
     };
 
     fetchEntries();
-  }, [userId]); // userId is added as a dependency
+  }, []); // userId is added as a dependency
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
