@@ -19,7 +19,7 @@ const DiabetesTrackerFooter = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Diabetes Tracker</h3>
+            <h3 className="text-lg font-semibold">DiaBuddy</h3>
             <p className="text-sm text-muted-foreground">
               Empowering you to manage your diabetes with ease and confidence.
             </p>
@@ -57,7 +57,7 @@ const DiabetesTrackerFooter = () => {
         <Separator className="my-8" />
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Diabetes Tracker. All rights reserved.
+            © {new Date().getFullYear()} DiaBuddy. All rights reserved.
           </p>
           <div className="flex space-x-4">
             <Button variant="ghost" size="" className='bg-transparent'>
