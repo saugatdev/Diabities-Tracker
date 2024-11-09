@@ -13,14 +13,29 @@ import AboutUsPage from './pages/aboutus';
 
 import BlogHomepage from './components/blogs/bloghomepage';
 import SingleBlogPost from './components/blogs/contents/blog1';
+import ReactGA from 'react-ga4';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // State to track authentication
   const [showLogin, setShowLogin] = useState(true);
 
+
   const handleLogin = () => {
     setIsAuthenticated(true); // Set authentication state to true on successful login
   };
+
+  ReactGA.initialize('G-B5HX0HQVRY');
+
+// AnalyticsTracker component to handle route changes and page views
+const AnalyticsTracker = () => {
+  const location = useLocation();
+  
+  useEffect(() => {
+    ReactGA.send({ hitType: 'pageview', page: location.pathname });
+  }, [location]);
+
+  return null;
+};
 
 
   return (

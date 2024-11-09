@@ -21,7 +21,7 @@ const LoginForm = ({ onToggle }) => {
   return (
     <>
       <h1 className="text-3xl font-bold mb-4 text-center" style={{ color: 'black' }}>
-        Diabetes Tracker
+      DiaBuddy
       </h1>
       <Card className="p-6 max-w-md mx-auto">
         <h2 className="text-xl font-bold mb-4">Login</h2>
