@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from "@/components/ui/button";
 
 // Helper function to check if blood sugar level is high
 const isHighBloodSugar = (level, type) => {
