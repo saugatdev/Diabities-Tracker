@@ -9,8 +9,7 @@ const PORT = process.env.PORT;
 import cors from 'cors';
 
 
-app.use(cors({
-  }));
+app.use(cors({ origin: `https://diabities-tracker-mwir.vercel.app`}));
 
 
 connectDb();

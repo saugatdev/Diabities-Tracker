@@ -13,7 +13,7 @@ const AIDiabetesInsights = () => {
   const fetchAIInsights = async () => {
     setLoading(true);
     try {
-        const response = await fetch('http://localhost:3000/user/generatereport/', {
+        const response = await fetch(`https://diabities-tracker.vercel.app/user/generatereport/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -34,7 +34,7 @@ const LineChartComponent = () => {
       }
 
       try {
-        const response = await fetch(`http://localhost:3000/user/getdata/${userId}`);
+        const response = await fetch(`https://diabities-tracker.vercel.app/user/getdata/${userId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }

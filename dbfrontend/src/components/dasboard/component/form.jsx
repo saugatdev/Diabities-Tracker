@@ -56,7 +56,7 @@ const handleSubmit = async (event) => {
   console.log("Form data to be submitted:", data); // Log form data for debugging
 
   try {
-    const response = await fetch('http://localhost:3000/user/diabetes', {
+    const response = await fetch(`https://diabities-tracker.vercel.app/user/diabetes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

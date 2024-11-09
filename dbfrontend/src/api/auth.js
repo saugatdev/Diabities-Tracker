@@ -1,7 +1,7 @@
 // src/auth.js
 export const registerUser = async (formData) => {
     try {
-      const response = await fetch('http://localhost:3000/user/register', {
+      const response = await fetch(`https://diabities-tracker.vercel.app/user/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
