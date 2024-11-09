@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Bell, Plus, TrendingUp, Activity, Droplet, Apple, User } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import LineChartComponent from '../ui/LineChart';
 import DiabetesTrackingForm from './component/form';
 import AIDiabetesInsights from './component/aiinsight';

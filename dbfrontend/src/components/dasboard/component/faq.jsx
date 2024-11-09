@@ -3,7 +3,7 @@ import {motion, AnimatePresence} from '../../../../node_modules/framer-motion'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/Button"
+import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ChevronDown, Search, Lightbulb, Activity, Pill, Apple } from 'lucide-react'
 
