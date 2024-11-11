@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Brain, Smartphone, ChartLine, Utensils, Bell, Users, ChevronRight, Sun, Moon } from 'lucide-react'
-
+import ECGHeart from '@/components/ui/ecgheart'
 import { useNavigate } from 'react-router-dom';  
 
 
@@ -67,6 +67,12 @@ const DiaBuddyLandingPage = () => {
         <section className={`pt-32 pb-20 px-4 overflow-hidden ${isDarkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-900'}`}>
           <div className="container mx-auto text-center relative">
             <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full">
+            <section className="w-screen h-auto md:h-32 lg:h-40 flex justify-center items-center">
+                <div className="w-full max-w-6xl"> {/* Controls maximum width */}
+                    <ECGHeart />
+                </div>
+            </section>
+
               <div 
                 className="absolute top-0 left-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"
                 style={{
