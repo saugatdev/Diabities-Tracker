@@ -10,10 +10,11 @@ import Dashboard from './components/dasboard/Dashboard';
 import DarkModeToggle from './components/ui/DarkModeToggle';
 import ProfileDashboard from './components/dasboard/profile';
 import AboutUsPage from './pages/aboutus';
-
+import DiaBuddyLandingPage from './pages/landingpage';
 import BlogHomepage from './components/blogs/bloghomepage';
 import SingleBlogPost from './components/blogs/contents/blog1';
 import ReactGA from 'react-ga4';
+
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // State to track authentication
@@ -40,55 +41,52 @@ const AnalyticsTracker = () => {
 
   return (
     <Router>
-      <Toaster position="top-center" />
-      <Routes>
-        <Route path="/dashboard" element={
+    <Toaster position="top-center" />
+    <Routes>
+      {/* Landing page at the root path */}
+      <Route path="/" element={<DiaBuddyLandingPage />} />
+  
+      {/* Protected routes */}
+      <Route
+        path="/dashboard"
+        element={
           <ProtectedRoute isAuthenticated={isAuthenticated}>
-            <Dashboard /> 
+            <Dashboard />
           </ProtectedRoute>
-        } 
-        />
-
-          
-      <Route path="/profile" element={
+        }
+      />
+      <Route
+        path="/profile"
+        element={
           <ProtectedRoute isAuthenticated={isAuthenticated}>
             <ProfileDashboard />
           </ProtectedRoute>
-        } />
-        
-      
-        {/* Redirect to dashboard if authenticated, otherwise show login */}
-        <Route
-          path="/login"
-          element={
-            isAuthenticated ? (
-              <Navigate to="/dashboard" />
-            ) : (
-              <LoginForm onLogin={handleLogin} />
-            )
-          }
-        />
-
-        {/* Registration route */}
-        <Route
-          path="/register"
-          element={<RegisterForm />}
-        />
-
-        {/* Default route redirects to login */}
-        <Route path="/" element={<Navigate to="/login" />} />
-
-        {/* Redirect any other route to login */}
-        <Route path="*" element={<Navigate to="/login" />} />
-        {/*  other routes */}
-        <Route path="/profile" element={<ProfileDashboard />} />
-        <Route path="/about-us" element={<AboutUsPage />} />
-       
-        <Route path="/blogs" element={<BlogHomepage />} />
-        <Route path="/blog/:id" element={<SingleBlogPost />} /> 
-     
-      </Routes>
-    </Router>
+        }
+      />
+  
+      {/* Login and registration routes */}
+      <Route
+        path="/login"
+        element={
+          isAuthenticated ? (
+            <Navigate to="/dashboard" />
+          ) : (
+            <LoginForm onLogin={handleLogin} />
+          )
+        }
+      />
+      <Route path="/register" element={<RegisterForm />} />
+  
+      {/* Other routes */}
+      <Route path="/about-us" element={<AboutUsPage />} />
+      <Route path="/blogs" element={<BlogHomepage />} />
+      <Route path="/blog/:id" element={<SingleBlogPost />} />
+  
+      {/* Catch-all route */}
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
+  </Router>
+  
   );
 };
 
