@@ -21,7 +21,7 @@ const DiaBuddyLandingPage = () => {
 
   const FeatureCard = ({ icon, title, content, isDarkMode }) => (
     <div className={`p-6 rounded-lg shadow-lg ${isDarkMode ? 'bg-gray-700 text-gray-100' : 'bg-white text-gray-900'}`}>
-      <div className="flex items-start justify-center mb-4">
+      <div className="flex items-start  mb-4">
         {icon}
       </div>
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
@@ -117,7 +117,7 @@ const DiaBuddyLandingPage = () => {
     <h2 className={`text-3xl font-bold text-center mb-12 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
       Why Choose DiaBuddy?
     </h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <FeatureCard
         icon={<Brain className="h-12 w-12 mb-4 text-blue-500" />}
         title="AI-Powered Insights"
