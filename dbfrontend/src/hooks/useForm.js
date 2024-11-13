@@ -10,12 +10,16 @@ const useForm = () => {
     password: '',
   });
 
+  const[loading, setLoading] = useState(false);
+
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); //set loading state true to show loader
     console.log("handleSubmit fired with data:", formData);
   
     try {
@@ -32,7 +36,8 @@ const useForm = () => {
       if (response.ok) {
         // Show success toast with custom color
         toast.success('User registered successfully', {
-          style: { backgroundColor: '#28a745', color: 'white' } // Green background for success
+          style: { backgroundColor: '#28a745', color: 'white' }, // Green background for success
+          duration: 500,
         });
         setFormData({
           username: '',
@@ -44,14 +49,18 @@ const useForm = () => {
       } else {
         // Show error toast with custom color
         toast.error(data.message || 'An error occurred during registration', {
-          style: { backgroundColor: '#dc3545', color: 'white' } // Red background for error
+          style: { backgroundColor: '#dc3545', color: 'white' }, // Red background for error
+          duration: 500,
         });
       }
     } catch (error) {
       // Show error toast with custom color
       toast.error('Failed to register. Please try again.', {
-        style: { backgroundColor: '#dc3545', color: 'white' } // Red background for error
+        style: { backgroundColor: '#dc3545', color: 'white' }, // Red background for error
+        duration: 500,
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -59,7 +68,9 @@ const useForm = () => {
     formData,
     handleChange,
     handleSubmit,
+    loading,
   };
 };
+
 
 export default useForm;

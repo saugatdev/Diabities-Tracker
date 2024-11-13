@@ -6,6 +6,7 @@ import '../../index.css';
 import useLogin from '@/hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
 import DarkModeToggle from '../ui/DarkModeToggle';
+import LinearIndeterminateLoader from '../ui/loader';
 
 const LoginForm = ({ onToggle }) => {
   const {
@@ -14,16 +15,19 @@ const LoginForm = ({ onToggle }) => {
     handleSubmit,
     errorMessage,
     successMessage,
+    loading,
   } = useLogin(); // Use the custom hook
 
   const navigate = useNavigate(); // Initialize useNavigate
 
   return (
     <>
+    
       <h1 className="text-3xl font-bold mb-4 text-center" style={{ color: 'black' }}>
       DiaBuddy
       </h1>
       <Card className="p-6 max-w-md mx-auto">
+      {loading && <LinearIndeterminateLoader/>}
         <h2 className="text-xl font-bold mb-4">Login</h2>
         <form onSubmit={handleSubmit}> {/* Set onSubmit to handleSubmit */}
           <div className="mb-4">
@@ -62,7 +66,7 @@ const LoginForm = ({ onToggle }) => {
               Register Now
             </a>
           </div>
-          <Button type="submit" className="w-full">Login</Button>
+          <Button type="submit" disabled={loading} className="w-full">Login</Button>
         </form>
       </Card>
     </>

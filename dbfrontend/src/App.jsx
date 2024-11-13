@@ -40,9 +40,13 @@ const AnalyticsTracker = () => {
 
 
   return (
+    <>
+    
     <Router>
+      
     <Toaster position="top-center" />
     <Routes>
+      
       {/* Landing page at the root path */}
       <Route path="/" element={<DiaBuddyLandingPage />} />
   
@@ -86,7 +90,7 @@ const AnalyticsTracker = () => {
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   </Router>
-  
+  </>
   );
 };
 

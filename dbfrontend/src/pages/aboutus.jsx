@@ -10,8 +10,8 @@ import DiabetesTrackerFooter from '@/components/dasboard/component/footer'
 const AboutUsPage = () => {
   const teamMembers = [
     { name: "Dr. Jane Smith", role: "Founder & Endocrinologist", image: "https://img.freepik.com/premium-photo/medical-hospital-doctor-image-by-ai-generator_1020925-766.jpg?w=360" },
-    { name: "Saugat Ghimire", role: "Backend Developer", image: "https://scontent.fktm7-1.fna.fbcdn.net/v/t39.30808-6/387802327_2224469114411151_4590540537751352155_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEWVbEHTC3Xexe22Tgh0CPcuPKEjuROnRu48oSO5E6dG9rMLjfl-U3mNX2KUU4u4uEIdjOradN3Ref8KVwWi1l4&_nc_ohc=NCsJKOraJa4Q7kNvgFCAky-&_nc_zt=23&_nc_ht=scontent.fktm7-1.fna&_nc_gid=ADWCTd0W0LDKj4vCU_AIK_7&oh=00_AYAtWLeSJAdXYtB30sU4fdqy50takgG3LXmKutxSsrnGpw&oe=6732AD85" },
-    { name: "Sudip Acharya", role: "Frontend Developer", image: "https://media.licdn.com/dms/image/v2/D5603AQH_akcB-Kh2nQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1722150590008?e=1736380800&v=beta&t=fMAIA175exJPG-2vhGUwhFiSzUAPlOGT3xt1qYlFKX0" },
+    { name: "Saugat Ghimire", role: "Backend Developer", image: "#" },
+    { name: "Sudip Acharya", role: "Frontend Developer", image: "#" },
     { name: "Michael Johnson", role: "UX Designer", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK0DWFUHtpTrcIb63URF8Wa_5uRDNm8fYWPQ&s" },
   ]
 

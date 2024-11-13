@@ -9,6 +9,7 @@ const useLogin = () => {
   });
 
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   // Check if already logged in and redirect if token exists
   useEffect(() => {
@@ -24,6 +25,7 @@ const useLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); //set loading state true to show loader
     console.log("handleSubmit fired with data:", formData);
 
     try {
@@ -49,7 +51,8 @@ const useLogin = () => {
         console.log("username:", data.username);
 
         toast.success('Login successful!', {
-          style: { backgroundColor: '#28a745', color: 'white' }
+          style: { backgroundColor: '#28a745', color: 'white' },
+          duration: 500,
         });
 
         // Redirect to dashboard after login
@@ -57,14 +60,18 @@ const useLogin = () => {
         navigate('/dashboard');
       } else {
         toast.error(data.message || 'Login failed. Please check your credentials.', {
-          style: { backgroundColor: '#dc3545', color: 'white' }
+          style: { backgroundColor: '#dc3545', color: 'white' },
+          duration: 500,
         });
       }
     } catch (error) {
       console.error('Login error:', error);
       toast.error('Failed to log in. Please try again.', {
-        style: { backgroundColor: '#dc3545', color: 'white' }
+        style: { backgroundColor: '#dc3545', color: 'white' },
+        duration: 500,
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -72,6 +79,7 @@ const useLogin = () => {
     formData,
     handleChange,
     handleSubmit,
+    loading,
   };
 };
 

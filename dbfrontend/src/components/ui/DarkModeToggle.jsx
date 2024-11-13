@@ -1,30 +1,43 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import { Sun, Moon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
-export default function DarkModeToggle() {
-  // Check if user's system prefers dark mode initially
-  const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  // Get initial theme state
-  const [darkMode, setDarkMode] = useState(
-    () => localStorage.getItem("theme") === "dark" || (systemPrefersDark && !localStorage.getItem("theme"))
+const DarkModeToggle = () => {
+  // Check localStorage for existing preference, default to light mode
+  const [isDarkMode, setIsDarkMode] = useState(
+    () => localStorage.getItem('theme') === 'dark'
   );
 
-  // Toggle dark mode and save preference
+  useEffect(() => {
+    // Apply the theme class to the body based on dark mode state
+    if (isDarkMode) {
+      document.body.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  // Toggle the dark mode state
   const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    localStorage.setItem("theme", newDarkMode ? "dark" : "light");
-    document.documentElement.classList.toggle("dark", newDarkMode);
+    setIsDarkMode((prevMode) => !prevMode);
   };
 
-  // Apply saved theme on load
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
-  }, [darkMode]);
-
   return (
-    <button onClick={toggleDarkMode} className="p-2 bg-gray-200 dark:bg-gray-800 rounded">
-      {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
-    </button>
+    <Button
+      variant="outline"
+      onClick={toggleDarkMode}
+      className="flex items-center"
+    >
+      {isDarkMode ? (
+        <Sun className="h-5 w-5 text-yellow-500" />
+      ) : (
+        <Moon className="h-5 w-5 text-blue-500" />
+      )}
+      <span className="sr-only">Toggle dark mode</span>
+    </Button>
   );
-}
+};
+
+export default DarkModeToggle;

@@ -1,26 +1,35 @@
 // RegisterForm.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Card } from '../ui/card';
 import useForm from '../../hooks/useForm'; // Ensure the path is correct
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import LinearIndeterminateLoader from '../ui/loader';
+import DarkModeToggle from '../ui/DarkModeToggle';
 
 
 const RegisterForm = ({ onToggle }) => {
-  const { formData, handleChange, handleSubmit, errorMessage, successMessage } = useForm();
+  const { loading, formData, handleChange, handleSubmit, errorMessage, successMessage } = useForm();
+ 
+
+
 
 
   const navigate = useNavigate(); // Initialize useNavigate
 
   return (
     <>
+     
       <h1 className="text-3xl font-bold mb-4 text-center" style={{ color: 'black' }}>
       DiaBuddy
       </h1>
       
       <Card className="p-6 max-w-md mx-auto">
+      {loading && <LinearIndeterminateLoader/>}
         <h2 className="text-xl font-bold mb-4">Register</h2>
+
+       
 
         {/* Display success and error messages */}
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
@@ -101,7 +110,7 @@ const RegisterForm = ({ onToggle }) => {
             </a>
 
           </div>
-          <Button type="submit" className="w-full mt-4">Register</Button>
+          <Button type="submit" disabled={loading} className="w-full mt-4">Register</Button>
         </form>
       </Card>
     </>
