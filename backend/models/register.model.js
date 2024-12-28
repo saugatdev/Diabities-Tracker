@@ -17,17 +17,14 @@ const registerSchema = new Schema({
     fullname:{
         type:String,
         required:true,
-        unique:true,
     },
     contactnumber:{
         type:Number,
         required:true,
-        unique:true,
     },
     password:{
         type:String,
         required:true,
-        unique:true,
 
     }
 
