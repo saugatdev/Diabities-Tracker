@@ -64,7 +64,7 @@ const DiabetesTrackerNavbar = ({ showProfileMenu, showBackButton = true }) => {
       
       <div className="flex items-center">
         
-        <div className="text-2xl font-bold">DiaBuddy</div>
+        <div className="text-2xl font-bold">Mero Gluco</div>
       </div>
       
       <div className="flex items-center space-x-3.5">

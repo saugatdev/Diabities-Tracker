@@ -54,7 +54,7 @@ const DiaBuddyLandingPage = () => {
     <div className={`flex flex-col min-h-screen ${isDarkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-900'}`}>
       <header className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
         <div className="container mx-auto px-4 py-6 flex justify-between items-center">
-          <div className="text-2xl font-bold">DiaBuddy</div>
+          <div className="text-2xl font-bold">Mero Gluco</div>
           <nav  className={` flex gap-3 text-gray-900 ${isDarkMode ? 'text-white' : 'text-black'} border-none`}>
             <Button className='bg-transparent'variant="ghost" onClick={() => handleClick('/blogs')}>Blogs</Button>
             <Button className='bg-transparent' variant="ghost" onClick={() => handleClick('/about-us')}>About</Button>
@@ -96,7 +96,7 @@ const DiaBuddyLandingPage = () => {
               Manage Diabetes with AI
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto relative z-10">
-              DiaBuddy: Your AI-powered companion for effortless diabetes management.
+            Mero Gluco: Your AI-powered companion for effortless diabetes management.
             </p>
             <Button
                 size="lg"
@@ -121,7 +121,7 @@ const DiaBuddyLandingPage = () => {
         <section className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
   <div className="container mx-auto px-4">
     <h2 className={`text-3xl font-bold text-center mb-12 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-      Why Choose DiaBuddy?
+      Why Choose Mero Gluco?
     </h2>
     <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <FeatureCard
@@ -152,19 +152,19 @@ const DiaBuddyLandingPage = () => {
     <h2 className="text-3xl font-bold mb-8">What Our Users Say</h2>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       <TestimonialCard
-        content="DiaBuddy has revolutionized how I manage my diabetes. The AI insights are incredibly helpful!"
+        content="Mero Gluco has revolutionized how I manage my diabetes. The AI insights are incredibly helpful!"
         name="Sarah J."
         avatar="https://cdn.goenhance.ai/user/2024/07/19/c0c1400b-abc2-4541-a849-a7e4f361d28d_0.jpg"
         isDarkMode={isDarkMode} // Pass isDarkMode prop here
       />
       <TestimonialCard
-        content="DiaBuddy has revolutionized how I manage my diabetes. The AI insights are incredibly helpful!"
+        content="Mero Gluco has revolutionized how I manage my diabetes. The AI insights are incredibly helpful!"
         name="Sarah J."
         avatar="https://cdn.goenhance.ai/user/2024/07/19/c0c1400b-abc2-4541-a849-a7e4f361d28d_0.jpg"
         isDarkMode={isDarkMode} // Pass isDarkMode prop here
       />
       <TestimonialCard
-        content="DiaBuddy has revolutionized how I manage my diabetes. The AI insights are incredibly helpful!"
+        content="Mero Gluco has revolutionized how I manage my diabetes. The AI insights are incredibly helpful!"
         name="Sarah J."
         avatar="https://cdn.goenhance.ai/user/2024/07/19/c0c1400b-abc2-4541-a849-a7e4f361d28d_0.jpg"
         isDarkMode={isDarkMode} // Pass isDarkMode prop here
@@ -178,7 +178,7 @@ const DiaBuddyLandingPage = () => {
 
       <footer className={`py-8 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2024 DiaBuddy. All rights reserved.</p>
+          <p>&copy; 2024 Mero Gluco. All rights reserved.</p>
           <div isDarkMode={isDarkMode}>
          
           </div>

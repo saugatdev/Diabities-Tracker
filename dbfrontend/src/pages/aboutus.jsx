@@ -23,12 +23,12 @@ const AboutUsPage = () => {
     <div className="container mx-auto p-4 space-y-8 md:w-4/5 md:mx-auto w-full">
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-4xl font-bold">About DiaBuddy</CardTitle>
+          <CardTitle className="text-4xl font-bold">About Mero Gluco</CardTitle>
           <CardDescription>Empowering Diabetes Management Through Technology</CardDescription>
         </CardHeader>
         <CardContent className="text-center">
           <p className="mt-4 text-lg">
-            DiaBuddy is more than just a diabetes tracker. We're a dedicated team of healthcare professionals, 
+            Mero Gluco is more than just a diabetes tracker. We're a dedicated team of healthcare professionals, 
             technologists, and individuals passionate about improving the lives of people with diabetes.
           </p>
         </CardContent>
@@ -74,7 +74,7 @@ const AboutUsPage = () => {
           </CardHeader>
           <CardContent>
             <p>
-              Join thousands of users who are taking control of their diabetes with DiaBuddy. 
+              Join thousands of users who are taking control of their diabetes with Mero Gluco. 
               Share experiences, learn from others, and grow together.
             </p>
           </CardContent>
@@ -84,7 +84,7 @@ const AboutUsPage = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl font-bold">Meet Our Team</CardTitle>
-          <CardDescription>The experts behind DiaBuddy</CardDescription>
+          <CardDescription>The experts behind Mero Gluco</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -110,7 +110,7 @@ const AboutUsPage = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <p>
-            At DiaBuddy, we're committed to:
+            At Mero Gluco, we're committed to:
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li>Providing accurate, up-to-date information and tools for diabetes management</li>
@@ -125,7 +125,7 @@ const AboutUsPage = () => {
         <CardContent className="text-center py-8">
           <h3 className="text-xl font-semibold mb-4">Ready to Take Control of Your Diabetes?</h3>
           <Button size="lg" className="mr-4">
-            Download DiaBuddy
+            Download Mero Gluco
           </Button>
           <Button variant="outline" size="lg">
             <Mail className="mr-2 h-4 w-4" />

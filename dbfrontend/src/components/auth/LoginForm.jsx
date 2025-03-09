@@ -24,7 +24,7 @@ const LoginForm = ({ onToggle }) => {
     <>
     
       <h1 className="text-3xl font-bold mb-4 text-center" style={{ color: 'black' }}>
-      DiaBuddy
+      Mero Gluco
       </h1>
       <Card className="p-6 max-w-md mx-auto">
       {loading && <LinearIndeterminateLoader/>}
